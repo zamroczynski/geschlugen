@@ -40,7 +40,7 @@ class MysqlConnector:
         self.cursor.execute(self.queries['getVocabularyType'].format(language=language_id))
         return self.cursor.fetchall()
 
-    def get_vocabulary_types(self, type_id: int):
+    def get_vocabulary(self, type_id: int):
         self.cursor.execute(self.queries['getVocabulary'].format(type=type_id))
         return self.cursor.fetchall()
 

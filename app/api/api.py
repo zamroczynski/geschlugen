@@ -20,7 +20,7 @@ def vocabulary_types(language_id: int):
 
 
 def vocabulary(type_id: int):
-    data = mysql_connector.get_vocabulary_types(type_id)
+    data = mysql_connector.get_vocabulary(type_id)
     return data
 
 
