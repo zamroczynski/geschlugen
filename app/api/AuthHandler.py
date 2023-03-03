@@ -1,17 +1,17 @@
-import jwt
-from fastapi import HTTPException, Security
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi import HTTPException, Security, Depends, status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer, OAuth2PasswordBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
+from jose import JWTError, jwt
 
 from app.config import config
 
 
 SECURITY = config.get('SECURITY')
+security = HTTPBearer()
 
 
 class AuthHandler:
-    security = HTTPBearer()
     pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
     secret = SECURITY.get('SECRET_KEY')
     expires_time = SECURITY.get('ACCESS_TOKEN_EXPIRE_MINUTES')
@@ -44,5 +44,21 @@ class AuthHandler:
         except jwt.InvalidTokenError as e:
             raise HTTPException(status_code=401, detail='Invalid token')
 
-    def auth_wrapper(self, auth: HTTPAuthorizationCredentials = Security(security)):
-        return self.decode_token(auth.credentials)
+    def get_current_user(self, credentials: HTTPAuthorizationCredentials = Depends(security)):
+        try:
+            token = credentials.credentials
+            payload = jwt.decode(token, self.secret, algorithms=[self.algorithm])
+            username = payload.get("sub")
+            if username is None:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid authentication credentials",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+            return username
+        except JWTError:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid authentication credentials",
+                headers={"WWW-Authenticate": "Bearer"},
+            )

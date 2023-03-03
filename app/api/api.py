@@ -1,11 +1,7 @@
-from typing import Union
-from datetime import datetime, timedelta
-from fastapi import Depends, FastAPI, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from passlib.context import CryptContext
+from fastapi import Depends, HTTPException
 
 from app.db.mysql_connector import MysqlConnector
-from app.models.models import AuthDetails
+from app.models.models import AuthDetails, Word
 from app.config import config
 from app.api.AuthHandler import AuthHandler
 
@@ -26,7 +22,8 @@ def login(auth_details: AuthDetails):
     if (user is None) or (not auth_handler.verify_password(auth_details.password, user['password'])):
         raise HTTPException(status_code=401, detail='Invalid username and/or password')
     token = auth_handler.encode_token(user['username'])
-    return user
+    return {'token': token}
+
 
 def languages():
     data = mysql_connector.get_languages()
@@ -42,3 +39,7 @@ def vocabulary(type_id: int):
     data = mysql_connector.get_vocabulary(type_id)
     return data
 
+
+def insert_word(word: Word):
+    data = mysql_connector.insert_vocabulary(word)
+    return {'record inserted': data}

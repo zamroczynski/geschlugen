@@ -2,6 +2,7 @@ import mysql.connector
 
 
 from app.db import queries
+from app.models.models import Word
 
 
 class MysqlConnector:
@@ -42,3 +43,10 @@ class MysqlConnector:
     def get_user(self, login: str):
         self.cursor.execute(self.queries['getUser'].format(login=login))
         return self.cursor.fetchone()
+
+    def insert_vocabulary(self, word: Word):
+        sql = self.queries['insertVocabulary']
+        val = (word.translation, word.expression, word.imperfekt, word.perfekt, word.type)
+        self.cursor.execute(sql, val)
+        self.mydb.commit()
+        return self.cursor.rowcount

@@ -1,3 +1,7 @@
+from datetime import datetime
+
+utc = datetime.utcnow()
+
 languages = [
     {
         "id": 1,
@@ -16,36 +20,38 @@ vocabulary_types_de = [
     {"id": 3, "name": "Czasowniki nieregularne"}
 ]
 
-vocabulary_eng = [
-    {
-        "id": 1,
-        "translation": "kot",
-        "expression": "cat",
-        "imperfekt": None,
-        "perfekt": None
-    },
-    {
-        "id": 2,
-        "translation": "pies",
-        "expression": "dog",
-        "imperfekt": None,
-        "perfekt": None
-    }
-]
+vocabulary_eng = {
+    "id": 1,
+    "translation": "kot",
+    "expression": "cat",
+    "imperfekt": None,
+    "perfekt": None
+}
 
-vocabulary_de = [
-    {
-        "id": 3,
-        "translation": "cyce",
-        "expression": "Titten",
-        "imperfekt": None,
-        "perfekt": None
+vocabulary_de = {
+    "id": 3,
+    "translation": "cyce",
+    "expression": "Titten",
+    "imperfekt": None,
+    "perfekt": None
+}
+
+login_data = {
+    "admin": {
+        "username": "damian",
+        "password": "damian"
     },
-    {
-        "id": 4,
-        "translation": "pies",
-        "expression": "Hund",
-        "imperfekt": None,
-        "perfekt": None
+    "user": {
+        "username": "user",
+        "password": "user"
     }
-]
+}
+
+insert_word = {
+    "id": None,
+    "translation": "unit test" + str(utc),
+    "expression": "unit test" + str(utc),
+    "imperfekt": None,
+    "perfekt": None,
+    "type": 1
+}

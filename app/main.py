@@ -1,13 +1,10 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 from app.api import api
-from app.models.models import AuthDetails
+from app.models.models import AuthDetails, Word
 
 app = FastAPI()
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 origins = [
     "*",
@@ -43,3 +40,7 @@ def read_vocabulary(type_id: int):
 def login(auth_details: AuthDetails):
     return api.login(auth_details)
 
+
+@app.post("/insert/word")
+def insert_word(username: AuthDetails = Depends(api.auth_handler.get_current_user), word: Word = None):
+    return api.insert_word(word)
