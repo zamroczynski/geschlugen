@@ -4,3 +4,4 @@
 /app/api/__pycache__
 /app/db/__pycache__
 /app/models/__pycache__
+/app/tests/__pycache__

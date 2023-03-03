@@ -1,31 +1,21 @@
 from pydantic import BaseModel
+from typing import Union
 
 
-class Languages(BaseModel):
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: Union[str, None] = None
+
+
+class User(BaseModel):
     id: int
-    name: str
+    username: str
+    role: int
 
 
-class VocabularyType(BaseModel):
-    id: int
-    name: str
-    languages: int
-
-
-class Vocabulary(BaseModel):
-    id: int
-    translation: str
-    expression: str
-    type: int
-
-
-class Users(BaseModel):
-    id: int
-    login: str
+class UserInDB(User):
     password: str
-    role: id
-
-
-class Role(BaseModel):
-    id: int
-    name: str

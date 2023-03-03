@@ -1,11 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 from app.api import api
-# from app.db import mysql_connector
-
+from app.models.models import Token
 
 app = FastAPI()
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 origins = [
     "*",
@@ -37,6 +39,7 @@ def read_vocabulary(type_id: int):
     return api.vocabulary(type_id)
 
 
-@app.post("/login")
-def login(type_id: int):
-    return api.user(type_id)
+@app.post("/token")
+async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    return api.login_for_access_token(form_data)
+

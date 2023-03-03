@@ -1,35 +1,30 @@
 import mysql.connector
-from configparser import ConfigParser
 
 
 from app.db import queries
 
 
 class MysqlConnector:
-    def __init__(self, config_path):
-        self.configPath = config_path
-        self.config = ConfigParser()
-        self.config.read(self.configPath)
+    def __init__(self, config):
+        self.config = config
         self._check_config()
         self.mydb = mysql.connector.connect(
-            host=self.config.get('DB', 'host'),
-            user=self.config.get('DB', 'user'),
+            host=self.config.get('HOST'),
+            user=self.config.get('USER'),
             password='',
-            database=self.config.get('DB', 'database')
+            database=self.config.get('DATABASE')
         )
         self.cursor = self.mydb.cursor(dictionary=True)
         self.queries = queries.sql
 
     def _check_config(self):
-        if not self.config.has_section('DB'):
-            raise Exception('Error in config file: DB header missing')
-        if not self.config.has_option('DB', 'host'):
+        if "HOST" not in self.config:
             raise Exception('Error in config file: host field missing')
-        if not self.config.has_option('DB', 'user'):
+        if "USER" not in self.config:
             raise Exception('Error in config file: user field missing')
-        if not self.config.has_option('DB', 'password'):
+        if "PASSWORD" not in self.config:
             raise Exception('Error in config file: password field missing')
-        if not self.config.has_option('DB', 'database'):
+        if "DATABASE" not in self.config:
             raise Exception('Error in config file: database field missing')
 
     def get_languages(self):
@@ -44,6 +39,6 @@ class MysqlConnector:
         self.cursor.execute(self.queries['getVocabulary'].format(type=type_id))
         return self.cursor.fetchall()
 
-    def get_user(self, password: str):
-        self.cursor.execute(self.queries['getUser'].format(password=password))
+    def get_user(self, login: str):
+        self.cursor.execute(self.queries['getUser'].format(login=login))
         return self.cursor.fetchone()
