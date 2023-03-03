@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 from app.api import api
-from app.models.models import Token
+from app.models.models import AuthDetails
 
 app = FastAPI()
 
@@ -40,6 +40,6 @@ def read_vocabulary(type_id: int):
 
 
 @app.post("/token")
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
-    return api.login_for_access_token(form_data)
+def login(auth_details: AuthDetails):
+    return api.login(auth_details)
 
