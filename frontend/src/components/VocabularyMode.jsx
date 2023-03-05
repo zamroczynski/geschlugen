@@ -1,131 +1,108 @@
-import { useState, useRef } from 'react'
-
-
-const vocabulary = [
-    {
-        id: 1,
-        translation: "dupa",
-        expression: "ass"
-    },
-    {
-        id: 2,
-        translation: "cyce",
-        expression: "tits"
-    },
-    {
-        id: 3,
-        translation: "pipa",
-        expression: "pussy"
-    },
-    {
-        id: 4,
-        translation: "kot",
-        expression: "cat"
-    },
-    {
-        id: 5,
-        translation: "pies",
-        expression: "dog"
-    },
-    {
-        id: 6,
-        translation: "kutas",
-        expression: "dick"
-    },
-    {
-        id: 7,
-        translation: "Bardzo długie zdanie po polsku, które na pewno nie zostanie przetłumaczonelol",
-        expression: "dupa"
-    }
-];
-
-
+import { useState, useRef, useEffect } from "react";
+import { getVocabulary } from "../services/ApiService";
 
 function VocabularyMode(props) {
-    const [allGuessed, setAllGuessed] = useState(false);
-    const [rows, setRows] = useState([{ id: 1, expression: '', isDisabled: false }]);
-    const [inputValue, setInputValue] = useState('');
-    const inputRef = useRef(null);
+  const [vocabulary, setVocabulary] = useState([]);
+  const [rows, setRows] = useState([]);
+  const [dataReady, setDataReady] = useState(false);
+  const [allGuessed, setAllGuessed] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef(null);
 
-    const handleButton = (id) => {
-        const item = vocabulary.find((item) => item.id === id);
-        setInputValue(item.expression);
-        inputRef.current.value = '';
-        inputRef.current.focus();
+  useEffect(() => {
+    setDataReady(false);
+    getVocabulary(props.mode).then((res) => {
+      setVocabulary(res);
+      setDataReady(true);
+    });
+  }, []);
+
+  const NewTable = () => {
+    const handleButton = (id, correctAnswer, loopIndex) => {
+      const newData = [...rows];
+      newData[loopIndex].userAnswer = "";
+      setInputValue(correctAnswer);
+      inputRef.current.focus();
     };
 
-    const handleInputChange = (e, rowIndex, id) => {
-        const { value } = e.target;
-        const newData = [...rows];
-        newData[rowIndex].expression = value;
-        setRows(newData);
-
-        const foundItem = (vocabulary, id, valuee) => {
-            return vocabulary.find((item) => item.expression === valuee && item.id === id);
-        };
-
-
-        if (foundItem(vocabulary, id, value)) {
-            const lastObject = vocabulary[vocabulary.length - 1];
-            if (lastObject.id === foundItem.id) {
-                setAllGuessed(true);
-            } else {
-                e.target.disabled = true;
-                setRows([...newData, { id: rows.length + 1, expression: '', isDisabled: false }]);
-                setInputValue('');
-            }
+    const handleInputChange = (e, correctAnswer, loopIndex) => {
+      const newData = [...rows];
+      const inputValue = e.target.value;
+      newData[loopIndex].userAnswer = inputValue;
+      setRows(newData);
+      setInputValue(inputValue);
+      if (inputValue === correctAnswer) {
+        e.target.disabled = true;
+        let index = loopIndex + 1;
+        if (vocabulary.length === index) {
+          setAllGuessed(true);
+        } else {
+          const nextRow = vocabulary[index];
+          setRows([...newData, nextRow]);
+          setInputValue("");
         }
+      }
     };
-
-    const handleValue = () => {
-
-    }
-
-    const showTable = (() => {
-        return (
-            <table className="table table-sm table-striped table-responsive-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Polski</th>
-                        <th scope="col">{props.language}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allGuessed ? (<p>Wygrana!</p>) :
-                        rows.map((row, index) => (
-                            <tr key={row.id}>
-                                <td>{row.id}</td>
-                                <td>{vocabulary.find((item) => item.id === row.id).translation}</td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={row.expression}
-                                        id={row.id}
-                                        onChange={(e) => handleInputChange(e, index, row.id)}
-                                        disabled={row.isDisabled}
-                                        placeholder={inputValue}
-                                        ref={inputRef}
-                                        autoFocus />
-                                    <button 
-                                        className='btn btn-outline-light m-1' 
-                                        onClick={() => handleButton(row.id)}>
-                                        Pokaż
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
-        )
-    })
-
+    console.log("inputValue: ", inputValue);
     return (
-        <div className='table-responsive'>
-            <div>{props.mode}:</div>
-            {showTable()}
-        </div>
-    )
+      <table className="table table-sm table-striped table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">Numer</th>
+            <th scope="col">Polski</th>
+            <th scope="col">Angielski</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((word, index) => (
+            <tr key={word.id}>
+              <td>{word.id}</td>
+              <td>{word.translation}</td>
+              <td>
+                      <input
+                        className="form-control-sm"
+                        type="text"
+                        value={word.userAnswer}
+                        id={word.id}
+                        onChange={(e) =>
+                          handleInputChange(e, word.expression, index)
+                        }
+                        placeholder={inputValue}
+                        ref={inputRef}
+                        disabled={word.isDisabled}
+                        autoFocus
+                      />
+                    <button
+                      className="btn btn-outline-light m-1"
+                      onClick={() => handleButton(word.id, word.expression, index)}
+                    >
+                      Pokaż
+                    </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+  if (rows.length === 0 && vocabulary.length) {
+    setRows([
+      {
+        id: vocabulary[0].id,
+        expression: vocabulary[0].expression,
+        translation: vocabulary[0].translation,
+        isDisabled: false,
+        userAnswer: "",
+      },
+    ]);
+  }
+  return (
+    <div className="table-responsive">
+      <div>{props.language}:</div>
+      {dataReady && NewTable(vocabulary)}
+      {allGuessed && "Wygrana!"}
+    </div>
+  );
 }
 
 export default VocabularyMode;
