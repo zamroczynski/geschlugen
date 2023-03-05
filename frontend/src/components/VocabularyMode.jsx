@@ -10,11 +10,13 @@ function VocabularyMode(props) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    setDataReady(false);
-    getVocabulary(props.mode).then((res) => {
-      setVocabulary(res);
-      setDataReady(true);
-    });
+    if (props.mode > 0) {
+      setDataReady(false);
+      getVocabulary(props.mode).then((res) => {
+        setVocabulary(res);
+        setDataReady(true);
+      });
+    }
   }, []);
 
   const NewTable = () => {
@@ -48,15 +50,13 @@ function VocabularyMode(props) {
       <table className="table table-sm table-striped table-responsive-sm">
         <thead>
           <tr>
-            <th scope="col">Numer</th>
             <th scope="col">Polski</th>
-            <th scope="col">Angielski</th>
+            <th scope="col">{props.language}</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((word, index) => (
             <tr key={word.id}>
-              <td>{word.id}</td>
               <td>{word.translation}</td>
               <td>
                       <input

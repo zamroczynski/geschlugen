@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import VocabularyMode from "./VocabularyMode";
 import { getVocabularyType } from "../services/ApiService";
+import IrregularVerbs from "./IrregularVerbs";
 
 function ShowModes(props) {
   const [vocabularyType, setVocabularyType] = useState([]);
@@ -13,17 +14,14 @@ function ShowModes(props) {
   }, []);
 
   const handleModeClick = (mode) => {
-    console.log("mode.id:", mode);
     setSelectedMode(mode);
   };
 
   function DisplayMode(props) {
-    console.log("props")
     if (props.mode === 1 || props.mode === 2) {
-      console.log("jesdtem temte")
       return  <VocabularyMode mode={props.mode} language={props.languageName} />
     } else {
-      return ""
+      return <IrregularVerbs mode={props.mode} language={props.languageName} />
     }
   };
 

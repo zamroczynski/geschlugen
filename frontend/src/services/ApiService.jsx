@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 
 
 const config = {
@@ -21,31 +20,19 @@ export function getVocabularyType(language) {
   });
 }
 
-// export function getLanguages() {
-//   const [languages, setLanguages] = useState([]);
-//   const fetchLanguages = async () => {
-//     const response = await fetch("http://127.0.0.1:8000/languages")
-//     const languages = await response.json()
-//     setLanguages(languages.data)
-//   };
-//   return languages;
-// }
-
-export async function getVocabulary(type) {
+export function getVocabulary(type) {
   const url = "http://127.0.0.1:8000/vocabulary/";
-  return await axios.get(url.concat(type)).then((res) => {
+  return axios.get(url.concat(type)).then((res) => {
     return res.data;
   });
 }
 
-// export  function addpatient(patient) {
-// return axios.post('http://127.0.0.1:8000/patient/',
-// {
-//     patient_id: null,
-//     first_name: patient.first_name.value,
-//     last_name: patient.last_name.value,
-//     blood: patient.blood.value,
-// })
-// .then(res => {
-//     return res.data
-// })}
+export  function getToken(user) {
+return axios.post('http://127.0.0.1:8000/token',
+{
+    username: user.username.value,
+    password: user.username.value,
+})
+.then(res => {
+    return res.data
+})}
