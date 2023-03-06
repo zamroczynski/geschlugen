@@ -35,7 +35,23 @@ export function getToken(usernameStr, passwordStr) {
     .then((res) => {
       return res.data;
     })
-    .catch(error => {
+    .catch((error) => {
+      if (error.response.status === 401) {
+        console.error("401 Unauthorized");
+        return "Unauthorized";
+      } else {
+        console.error(error.message);
+      }
+    });
+}
+
+export function insertWord(body, config) {
+  return axios
+    .post("http://127.0.0.1:8000/insert/word", body, config)
+    .then(() => {
+      return "success";
+    })
+    .catch((error) => {
       if (error.response.status === 401) {
         console.error("401 Unauthorized");
         return "Unauthorized";

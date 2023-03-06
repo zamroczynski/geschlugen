@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ShowModes from "./ShowModes";
 import { getLanguages } from "../services/ApiService";
 
-function SelectLanguage() {
+function SelectLanguage(props) {
   const [languages, setLanguages] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedLanguageId, setSelectedLanguageId] = useState("");
@@ -11,6 +11,7 @@ function SelectLanguage() {
   useEffect(() => {
     getLanguages().then((res) => {
       setLanguages(res);
+      props.onDataReceived(res);
     });
   }, []);
 

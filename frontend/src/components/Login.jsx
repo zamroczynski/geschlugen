@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { getToken } from "../services/ApiService";
 
-function Login() {
+function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const [isLogged, setIsLogged] = useState(false);
   const [errorDesc, setErrorDesc] = useState("");
 
   const handlePasswordChange = (event) => {
@@ -19,50 +17,43 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     getToken(username, password).then((res) => {
-      console.log("res: ", res);
       if (res === "Unauthorized") {
         setErrorDesc("Błądy login lub hasło");
       } else {
         setErrorDesc("");
-        setToken(res.token);
-        setIsLogged(true);
+        props.onDataReceived({"token": res.token, "isLogged": true});
       }
     });
     
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="needs-validation was-validated">
-      {!isLogged && <>
-        <input
-          type="password"
-          onChange={handlePasswordChange}
-          className="form-control-sm float-end"
-          placeholder="Hasło..."
-          required
-        />
+    <div className="text-center mb-3">
+      <form onSubmit={handleSubmit}>
+      {!props.isLogged && <>
         <input
           type="text"
-          className="me-1 form-control-sm float-end"
+          className="me-1 form-control-sm"
           placeholder="Login..."
           onChange={handleUsernameChange}
           required
-          autoFocus
+        />
+        <input
+          type="password"
+          onChange={handlePasswordChange}
+          className="form-control-sm me-1"
+          placeholder="Hasło..."
+          required
         />
         <button
           type="submit"
-          className="btn btn-outline-success float-end btn-sm me-1"
+          className="btn btn-outline-success btn-sm"
         >
           Zaloguj
         </button>
         </>}
-        
-        <label className="text-danger float-end">{errorDesc}</label>
+        <div className="text-danger">{errorDesc}</div>
       </form>
-      {isLogged && <>
-        <button>dodaj słowo</button>
-      </>}
     </div>
   );
 }
