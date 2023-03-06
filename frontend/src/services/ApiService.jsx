@@ -1,10 +1,9 @@
 import axios from "axios";
 
-
 const config = {
-  headers:{
-    "Access-Control-Allow-Origin": "http://localhost:3000"
-  }
+  headers: {
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+  },
 };
 
 export function getLanguages() {
@@ -27,12 +26,21 @@ export function getVocabulary(type) {
   });
 }
 
-export  function getToken(user) {
-return axios.post('http://127.0.0.1:8000/token',
-{
-    username: user.username.value,
-    password: user.username.value,
-})
-.then(res => {
-    return res.data
-})}
+export function getToken(usernameStr, passwordStr) {
+  return axios
+    .post("http://127.0.0.1:8000/token", {
+      username: usernameStr,
+      password: passwordStr,
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch(error => {
+      if (error.response.status === 401) {
+        console.error("401 Unauthorized");
+        return "Unauthorized";
+      } else {
+        console.error(error.message);
+      }
+    });
+}
