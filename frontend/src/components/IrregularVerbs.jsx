@@ -26,7 +26,7 @@ function IrregularVerbs(props) {
   }, []);
 
   const NewTable = () => {
-    const handleButton = (id, correctAnswer, loopIndex, field) => {
+    const handleButton = (correctAnswer, loopIndex, field) => {
       const newData = [...rows];
       if (field === 1) {
         newData[loopIndex].userAnswerExpression = "";
@@ -37,11 +37,15 @@ function IrregularVerbs(props) {
       }
       if (field === 2) {
         newData[loopIndex].userAnswerImperfekt = "";
+        setRows(newData);
+        inputRefImperfekt.current.focus();
         setPlaceholderImperfekt(correctAnswer);
         setSelectedField(2);
       }
       if (field === 3) {
         newData[loopIndex].userAnswerPerfekt = "";
+        setRows(newData);
+        inputRefPerfekt.current.focus();
         setPlaceholderPerfekt(correctAnswer);
         setSelectedField(3);
       }
@@ -60,6 +64,7 @@ function IrregularVerbs(props) {
         newData[loopIndex].imperfektFocus = true;
         setRows(newData);
         setSelectedField(2);
+        setPlaceholderExpression("");
       }
     };
 
@@ -76,10 +81,11 @@ function IrregularVerbs(props) {
         newData[loopIndex].perfektFocus = true;
         setRows(newData);
         setSelectedField(3);
+        setPlaceholderImperfekt("");
       }
     };
 
-    const handleInputChange3 = (e, correctAnswer, loopIndex) => {
+    const handleInputChangePerfekt = (e, correctAnswer, loopIndex) => {
       const newData = [...rows];
       const inputValue = e.target.value;
       newData[loopIndex].userAnswerPerfekt = inputValue;
@@ -89,6 +95,7 @@ function IrregularVerbs(props) {
         newData[loopIndex].perfektIsDisabled = true;
         newData[loopIndex].perfektFocus = false;
         setRows(newData);
+        setPlaceholderPerfekt("");
         let index = loopIndex + 1;
         if (vocabulary.length === index) {
           setAllGuessed(true);
@@ -106,8 +113,6 @@ function IrregularVerbs(props) {
               perfektFocus: false,
             });
           console.log("next row:", nextRow);
-          newData[loopIndex].expressionFocus = true;
-          newData[loopIndex].isDisabled = false;
           setRows([...newData, nextRow]);
           setInputValue("");
         }
@@ -144,7 +149,7 @@ function IrregularVerbs(props) {
                 />
                 <button
                   className="btn btn-outline-light m-1"
-                  onClick={() => handleButton(word.id, word.expression, index)}
+                  onClick={() => handleButton(word.expression, index, 1)}
                   disabled={word.isDisabled}
                 >
                   Pokaż
@@ -156,6 +161,7 @@ function IrregularVerbs(props) {
                   className="form-control-sm"
                   type="text"
                   value={word.userAnswerImperfekt}
+                  placeholder={placeholderImperfekt}
                   id={word.id + 1}
                   onChange={(e) =>
                     handleInputChangeImperfekt(e, word.imperfekt, index)
@@ -166,7 +172,7 @@ function IrregularVerbs(props) {
                 <button
                   className="btn btn-outline-light m-1"
                   onClick={() =>
-                    handleButton(word.id, word.imperfekt, index, 2)
+                    handleButton(word.imperfekt, index, 2)
                   }
                   disabled={word.imperfektIsDisabled}
                 >
@@ -178,9 +184,10 @@ function IrregularVerbs(props) {
                   className="form-control-sm"
                   type="text"
                   value={word.userAnswerPerfekt}
+                  placeholder={placeholderPerfekt}
                   id={word.id + 2}
                   onChange={(e) =>
-                    handleInputChange3(e, word.perfekt, index, 3)
+                    handleInputChangePerfekt(e, word.perfekt, index, index)
                   }
                   ref={inputRefPerfekt}
                   disabled={word.perfektIsDisabled}
@@ -188,7 +195,7 @@ function IrregularVerbs(props) {
                 />
                 <button
                   className="btn btn-outline-light m-1"
-                  onClick={() => handleButton(word.id, word.perfekt, index, 3)}
+                  onClick={() => handleButton(word.perfekt, index, 3)}
                   disabled={word.perfektIsDisabled}
                 >
                   Pokaż
@@ -220,7 +227,6 @@ function IrregularVerbs(props) {
       },
     ]);
   }
-  //   console.log("vocabulary:", vocabulary);
   return (
     <div className="table-responsive">
       <div>{props.language}:</div>
