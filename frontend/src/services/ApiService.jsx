@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const baseUrl = "http://192.168.1.15:8000/"
+
 const config = {
   headers: {
     "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -7,28 +9,29 @@ const config = {
 };
 
 export function getLanguages() {
-  return axios.get("http://127.0.0.1:8000/languages", config).then((res) => {
+  return axios.get(baseUrl.concat("languages"), config).then((res) => {
     return res.data;
   });
 }
 
 export function getVocabularyType(language) {
-  const url = "http://127.0.0.1:8000/vocabulary/type/";
+  const url = baseUrl.concat("vocabulary/type/");
   return axios.get(url.concat(language)).then((res) => {
     return res.data;
   });
 }
 
 export function getVocabulary(type) {
-  const url = "http://127.0.0.1:8000/vocabulary/";
+  const url = baseUrl.concat("vocabulary/");
   return axios.get(url.concat(type)).then((res) => {
     return res.data;
   });
 }
 
 export function getToken(usernameStr, passwordStr) {
+  const url = baseUrl.concat("token");
   return axios
-    .post("http://127.0.0.1:8000/token", {
+    .post(url, {
       username: usernameStr,
       password: passwordStr,
     })
@@ -46,8 +49,9 @@ export function getToken(usernameStr, passwordStr) {
 }
 
 export function insertWord(body, config) {
+  const url = baseUrl.concat("insert/word");
   return axios
-    .post("http://127.0.0.1:8000/insert/word", body, config)
+    .post(url, body, config)
     .then(() => {
       return "success";
     })
