@@ -1,5 +1,4 @@
 import { useState } from "react";
-import LoginModal from "./LoginModal";
 import { getToken } from "../services/ApiService";
 
 function Login() {
