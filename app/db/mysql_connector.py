@@ -1,5 +1,4 @@
 import mysql.connector
-import random
 
 from app.db import queries
 from app.models.models import Word
@@ -38,8 +37,7 @@ class MysqlConnector:
 
     def get_vocabulary(self, type_id: int):
         self.cursor.execute(self.queries['getVocabulary'].format(type=type_id))
-        data = self.cursor.fetchall()
-        return random.shuffle(data)
+        return self.cursor.fetchall()
 
     def get_user(self, login: str):
         self.cursor.execute(self.queries['getUser'].format(login=login))

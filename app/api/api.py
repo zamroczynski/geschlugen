@@ -1,4 +1,5 @@
 from fastapi import Depends, HTTPException
+import random
 
 from app.db.mysql_connector import MysqlConnector
 from app.models.models import AuthDetails, Word
@@ -37,6 +38,7 @@ def vocabulary_types(language_id: int):
 
 def vocabulary(type_id: int):
     data = mysql_connector.get_vocabulary(type_id)
+    random.shuffle(data)
     return data
 
 

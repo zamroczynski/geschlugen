@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "http://192.168.1.15:8000/"
+// const baseUrl = "http://localhost:8000/"
 
 const config = {
   headers: {
