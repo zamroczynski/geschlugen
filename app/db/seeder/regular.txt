@@ -366,8 +366,8 @@ Wann fährt der Zug ab?
 Kiedy odjeżdża pociąg? 
 Ich reise morgen früh ab
 Jutro rano wyjeżdzam.
-gehen Sie geradeaus, an der Kreuzung bitte nach links
-Proszę iść prosto, na skrzyżowaniu proszę skręcić w lewo.
+an der Kreuzung
+na skrzyżowaniu
 vor
 przed
 nach
@@ -421,7 +421,7 @@ składać wniosek o wizę
 das Visum verlängern lassen
 (kazać) przedłużyć wizę
 vor der Reise Geld umtauschen/wechseln
-wymieniać pieniądze przed podróżą
+wymieniać(2) pieniądze przed podróżą
 Zloty in Euro umtauschen
 wymieniać złotówki na euro
 Reisefieber haben
@@ -924,18 +924,8 @@ hängen
 wiszą 
 gemütlich
 przytulny 
-im ersten/ zweiten/ dritten Stock
-na pierwszym/ drugim/ trzecim 
-Mein Zimmer und ganze Wohnung gefallen mir sehr
-Mój pokój i całe mieszkanie bardzo mi się podobają 
-Am Fenster hängen weiße Gardinen und bunte Vorhänge
-Na oknie wiszą białe firanki i kolorowe zasłony .
-Die Küche ist sehr bequem
-Kuchnia jest bardzo wygodna
-Die Familie Weiss wohnt in einem kleinen Einfamilienhaus mit einem schönen Garten und einer großen Terrasse
-Rodzina Weiss mieszka w niedużym domu jednorodzinnym z pięknym ogrodem i dużym tarasem
-Es gibt hier vier Zimmer, ein Bad, eine Küche und einen Korridor
-Są tutaj cztery pokoje, łazienka, kuchnia i korytarz. 
+im ersten Stock
+na pierwszym piętrze
 Mach die Tür zu!
 Zamknij drzwi 
 ich gehe nach Hause
@@ -948,43 +938,16 @@ der Schlüssel
 klucz 
 der Nachbar
 sąsiad
-Bitte füllen Sie das Formular zur Selbstauskunft aus
-Proszę wypełnić formularz informacyjny.
 Wie hoch ist die Miete?
 Ile wynosi czynsz?
-Welche Unterlagen soll ich mitbringen?
-Jakie dokumenty mam przynieść?
-Bitte bringen sie alle Unterlagen mit
 Proszę przynieść wszystkie dokumenty.
-Mein Zimmer ist 30 m2 groß
-Mój pokój ma 30m2. 
-Das Zimmer ist sehr hell und gemütlich
-Pokój jest bardzo jasny i przytulny.
-Im zentralen Teil steht ein großer Fernseher
-W centralnej części stoi duży telewizor.
-Unter dem Fernseher steht ein Sideboard
-Pod telewizorem stoi szafka na telewizor.
-Rechts steht ein Sofa
-Po prawej stronie stoi sofa.
-Das Sofa ist sehr bequem und ich sehe hier fern
-Sofa jest  wygodna i oglądam tutaj telewizję.
-Hinter dem Sofa ist ein großes Fenster
-Za sofą jest duże okno.
-Wenn es sonnig ist, das Zimmer ist hell
-Kiedy jest słonecznie, pokój jest jasny
 An der Wand hängen zwei Bilder
 Na ścianie wiszą 2 obrazy.
-Morgen hänge ich noch das dritte Bild an die Wand
-Jutro wieszam trzeci obraz na ścianę. 
-In der Mitte steht ein weißer Couchtisch auf einem bunten Teppich
-Na środku stoi biała ława na kolorowym dywanie.
-Hinter der Couch steht ein großer Regal mit Büchern
-Za kanapą stoi duży regał z książkami.
 In der Ecke steht eine  Pflanze
 W rogu stoi kwiatek/roślina
-Die Tätigkeiten aus dem Alltag
-Czynności dnia codziennego.
-er Alltag
+Die Tätigkeiten
+Czynności 
+der Alltag
 dzień powszedni    
 Tageszeiten
 pory dnia
@@ -1162,12 +1125,6 @@ E- Mails senden
 wysyłać e-maile
 basteln
 majsterkować
-Wie lange schläfst du gewöhnlich?
-Jak długo zazawyczaj śpisz? 
-Ich gehe immer abends spazieren
-Zawsze wieczorem chodzę na spacer.
-Am Morgen stehe ich um 7 Uhr auf. Ich gehe ins Badezimmer. Dort dusche ich und putze die Zähne. Dann ziehe ich mich an. Später kämme ich mich
-Wstaję rano o siódmej godzinie. Idę do łazienki. Tam biorę prysznic i myję zęby. Potem się ubieram. Następnie czeszę się.  
 jeden Morgen
 w każdy poranek
 jeden Vormittag
@@ -1200,22 +1157,6 @@ die ganze Woche
 cały tydzień
 das ganze Wochenende
 cały weekend
-einmal/zweimal/dreimal pro Tag/Woche
-raz/dwa razy/trzy razy w ciągu dnia/tygodnia
-Jeden Mittag habe ich eine Pause
-W każde południe mam przerwę.
-Jeden Nachmittag komme ich nach Hause zurück
-W każde popołudnie wracam do domu. 
-Jeden Tag esse ich das Frühstück
-Każdego dnia jem śniadanie
-Ich wasche mich und dann ich ziehe mich an
-Kąpie się i potem się ubieram.
-Später ich trinke Kaffee und ich gehe aus dem Haus
-Następnie piję kawę i wychodzę z domu.
-Ich gehe in die Bushaltestelle und ich fahre zur Arbeit
-Idę na przystanek i jadę do pracy.
-Dann arbeite ich bis zum Nachmittag
-Potem pracuję do popołudnia.
 der Bruder
 brat
 die Schwester
@@ -1271,9 +1212,7 @@ rozstawać się
 alleinstehend
 samotny   
 die Freundschaft
-przyjaźń  
-sich mit Freunden treffen
-spotykać się z przyjaciółmi 
+przyjaźń
 der Schulfreund
 kolega szkolny
 gut kennen
@@ -1290,8 +1229,6 @@ die Jugend
 młodzież 
 der Erwachsene
 dorosły  
-Meine Familie  besteht aus vier Personen
-Moja rodzina składa się z 4 osób.
 besuchen
 odwiedzać 
 kennen lernen
@@ -1308,28 +1245,3 @@ lieben
 kochać
 kussen
 całować
-bei Bekannten zu Besuch sein
-być w odwiedzinach u znajomych   
-Ich bin seit fünf Jahren verheiratet
-Jestem żonaty od pięciu lat.
-Sind das Ihre Kinder?
-Czy to są pańskie dzieci?
-Ich heiße Fabian und ich habe eine tolle Familie
-Nazywam się Fabian i mam wspaniałą rodzinę.
-Ich habe einen Bruder. Er heißt Basti und er ist sehr lustig
-Mam jednego brata. Nazywa się Basti i jest bardzo zabawny.
-Ich habe keine Schwester
-Nie mam siostry.
-Meine Eltern wohnen in Berlin, am Stadtrand
-Moi rodzicie mieszają w Berlinie, na przedmieściach.
-Meine Mutter kocht sehr gerne und mein Vater mag Fußball
-Moja mama lubi gotować, i mój tata lubi piłkę nożną.
-Meine Oma heißt Melania und sie ist schon 81 Jahre alt. Sie ist aber sehr fit und läuft sehr viel
-Moja babcia nazywa się Melania i ma już 81 lat. Jest jednak bardzo krzepka i dużo chodzi-biega (laufen)
-Meine Familie ist nicht groß
-Moja rodzina nie jest duża.
-In Berlin wohnen noch mein Onkel und meine Cousine
-W Berlinie mieszka jeszcze mój wujek o moja kuzynka.
-Wir haben einen Dackel und der ist auch ein Familienmitglied! Der Dackel heißt Xantia
-Mamy jamnika i on też jest członkiem rodziny! Jamnik nazywa się Xantia.
-
