@@ -1,10 +1,11 @@
 # Geschlugen
 
-## Aplikacja do nauki języka obcego
+## Language learning application
 
 ### Start frontend
 
 > cd frontend
+> 
 > npm start
 
 

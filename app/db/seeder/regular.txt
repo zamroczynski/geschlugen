@@ -268,8 +268,6 @@ Haushalt
 gospodarstwo domowe
 Ich werde erzählen davon
 powiem/opowiem o tym 
-Ihre Freunde tröstete sie
-jej przyjaciółka pocieszała ją
 Irgendwann
 czasami 
 Jetzt entdecken
@@ -308,10 +306,6 @@ Sagen
 powiedzieć
 schlaflose nachte mit neugebore
 bezsenna noc z nowonarodzonym
-Sie machte den Mund auf, um zu antworten
-otworzyła usta, by odpowiedzieć 
-Sitzen sich
-siedzieć
 Springt runter
 zeskoczyć
 Spülmaschinen/ Geschirrspüler
@@ -596,7 +590,7 @@ Teuer
 Drogi
 Wie viel kostet das?
 Ile to kosztuje?
-Wo sind die Umkleidekabinen?
+Wo ist die Umkleidekabinen?
 Gdzie jest przebieralnia?
 Verkaufen
 Sprzedawać
@@ -605,7 +599,7 @@ Płacić(2)
 Pytać o drogę
 nach dem Weg fragen
 Entschuldigung, wie komme ich?
-Przepraszam, jak dojść do?
+Przepraszam, jak dojdę do?
 Geradeaus gehen
 iść prosto
 Hinter der Ampel
@@ -765,7 +759,7 @@ Czym zajmujesz się zawodowo?
 Wie sind deine Arbeiszeiten?
 Jakie są godziny pracy. 
 Ich arbeite von 8:00 bis 16:00 Uhr
-Pracuję od 8:00 do 16:00.
+Pracuję od 8 do 16
 Ich arbeite als Büroangestellte
 Pracuję jako pracownik biurowy. 
 Hausbeschreibung
@@ -940,7 +934,6 @@ der Nachbar
 sąsiad
 Wie hoch ist die Miete?
 Ile wynosi czynsz?
-Proszę przynieść wszystkie dokumenty.
 An der Wand hängen zwei Bilder
 Na ścianie wiszą 2 obrazy.
 In der Ecke steht eine  Pflanze
@@ -1045,8 +1038,6 @@ zu Fuß zur Schule gehen
 iść do szkoły na pieszo
 gegen Mittag nach Hause zurückkommen
 przyjść do domu koło południa
-von 8 bis 16 arbeiten
-pracować od 8 do 16
 nach Hause zurückkommen
 wracać do domu      
 Zähne putzen
@@ -1107,7 +1098,7 @@ den Fernseher einschalten
 włączyć telewizor
 Wörter lernen
 uczyć się słówek
-Dialoge hör0en
+Dialoge hören
 słuchać dialogów
 vorbereiten sich auf
 przygotowywać się do

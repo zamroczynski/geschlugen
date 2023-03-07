@@ -31,15 +31,18 @@ function App() {
         <MyLogo />
       </div>
       <div className="row">
+      <div className="position-relative mb-5">
         {!showLoginForm && (
+          
           <button
-            className="btn btn-success btn-sm text-center"
+            className="btn btn-success btn-sm text-center position-absolute top-0 end-0"
             style={{width: "100px"}}
             onClick={handleButtonLogin}
           >
             Logowanie
           </button>
         )}
+        </div>
         {showLoginForm && (
           <Login onDataReceived={handleLoginData} isLogged={isLogged} />
         )}
