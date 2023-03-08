@@ -1,4 +1,5 @@
 import mysql.connector
+import time
 
 from app.db import queries
 from app.models.models import Word
@@ -6,16 +7,21 @@ from app.models.models import Word
 
 class MysqlConnector:
     def __init__(self, config):
-        self.config = config
-        self._check_config()
-        self.mydb = mysql.connector.connect(
-            host=self.config.get('HOST'),
-            user=self.config.get('USER'),
-            password=self.config.get('PASSWORD'),
-            database=self.config.get('DATABASE')
-        )
-        self.cursor = self.mydb.cursor(dictionary=True)
-        self.queries = queries.sql
+        try:
+            self.config = config
+            self._check_config()
+            self.mydb = mysql.connector.connect(
+                host=self.config.get('HOST'),
+                user=self.config.get('USER'),
+                password=self.config.get('PASSWORD'),
+                database=self.config.get('DATABASE')
+            )
+            self.cursor = self.mydb.cursor(dictionary=True)
+            self.queries = queries.sql
+        except mysql.connector.Error as err:
+            print(f"Error in mysql.conncetor: {err}")
+            time.sleep(120)
+
 
     def _check_config(self):
         if "HOST" not in self.config:
