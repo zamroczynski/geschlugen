@@ -11,7 +11,7 @@ class MysqlConnector:
         self.mydb = mysql.connector.connect(
             host=self.config.get('HOST'),
             user=self.config.get('USER'),
-            password='',
+            password=self.config.get('PASSWORD'),
             database=self.config.get('DATABASE')
         )
         self.cursor = self.mydb.cursor(dictionary=True)

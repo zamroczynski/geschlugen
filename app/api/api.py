@@ -1,4 +1,4 @@
-from fastapi import Depends, HTTPException
+from fastapi import HTTPException
 import random
 
 from app.db.mysql_connector import MysqlConnector

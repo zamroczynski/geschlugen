@@ -1,7 +1,7 @@
 config = {
     "DB":
         {
-            "HOST": "localhost",
+            "HOST": "db",
             "USER": "api",
             "PASSWORD": "password",
             "PORT": "3306",

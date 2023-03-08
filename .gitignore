@@ -7,3 +7,4 @@
 /app/models/__pycache__
 /app/tests/__pycache__
 /app/tests/.pytest_cache
+/database/
